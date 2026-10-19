@@ -15,12 +15,10 @@ export class EntreprisesComponent implements OnInit {
   entreprises: Entreprise[];
 
   constructor(private entrepriseService: EntrepriseService) {
-    this.entreprises = [];
+    this.entreprises = entrepriseService . listeEntreprises();
   }
 
-  ngOnInit(): void {
-    this.entreprises = this.entrepriseService.listeEntreprises();
-  }
+  
 
   supprimerEntreprise(ent: Entreprise) {
 
@@ -29,5 +27,8 @@ export class EntreprisesComponent implements OnInit {
     if (conf) {
       this.entrepriseService.supprimerEntreprise(ent);
     }
+  }
+  ngOnInit() {
+    //this.entreprises = this.entrepriseService.listeEntreprises();
   }
 }

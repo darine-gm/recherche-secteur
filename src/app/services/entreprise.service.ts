@@ -9,7 +9,7 @@ export class EntrepriseService {
 
   entreprises: Entreprise[];
   secteurs!: Secteur[];
-
+  entreprisesRecherche! : Entreprise[];
   constructor() {
 
     console.log("création du service entreprise");
@@ -49,6 +49,7 @@ export class EntrepriseService {
   }
 
   listeEntreprises(): Entreprise[] {
+    console.log('Secteurs fel service:', this.secteurs);
     return this.entreprises;
   }
 
@@ -87,6 +88,16 @@ export class EntrepriseService {
     return this.secteurs.find(
       sec => sec.idSecteur == id
       )!;
+    }
+    rechercheParSecteur(idSecteur : number): Entreprise[]{
+      this.entreprisesRecherche=[];
+      this.entreprises.forEach((cur , index) => {
+        if(idSecteur == cur.secteur.idSecteur){
+          console.log("cur "+cur);
+          this.entreprisesRecherche.push(cur);
+        }
+      });
+      return this.entreprisesRecherche;
     }
 
 }
